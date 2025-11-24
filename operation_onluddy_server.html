@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Operation&colon;</title>
+        <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+        
+    </head>
+    <body class="vscode-body vscode-light">
+        <h2 id="operation">Operation:</h2>
+<h2 id="usage">Usage</h2>
+<ol>
+<li>
+<p>open electerm, and connect to the luddy server;</p>
+</li>
+<li>
+<p><code>module load python</code>;</p>
+</li>
+<li>
+<p>change your working direction: <code>cd ./WORKINGDIRECTION</code>;</p>
+</li>
+<li>
+<p><code>jupyter-lab --no-browser --port=8888</code>;</p>
+</li>
+<li>
+<p>check the message about where the jupyter running, especially the port that used. For example, you may see such a message:</p>
+<pre><code>The jupyter server is running at:
+http://127.0.0.1:&lt;PORT&gt;
+http://127.0.0.1:&lt;PORT&gt;?tocken=&lt;TOKEN&gt;
+</code></pre>
+</li>
+<li>
+<p>copy the token from the message that you saw in last step;</p>
+</li>
+<li>
+<p>open your terminal of your own laptop, and input <code>ssh -N -f -L localhost:&lt;PORT&gt;:localhost:&lt;PORT&gt;:YOURIUUSERNAME@LUDDY SERVER NAME.luddy.indiana.edu</code>;</p>
+</li>
+<li>
+<p>open your brower, open the link:<code>http://localhost:&lt;PORT&gt;</code>, paste your token and log in;</p>
+</li>
+</ol>
+<h2 id="log-out">Log out</h2>
+<ol>
+<li>
+<p>close that page of the brower;</p>
+</li>
+<li>
+<p>in your own laptop, kill the job by</p>
+<pre><code>sudo lsof -i -P | grep LISTEN | grep :&lt;PORT&gt;
+sudo kill -9 &lt;PID&gt;
+</code></pre>
+<p>The <code>&lt;PID&gt;</code> is the number in the second column of the message when you input the first command line.</p>
+</li>
+<li>
+<p>in Luddy server, type <code>control+c</code>, and then input <code>y</code> to shut down the server</p>
+</li>
+</ol>
+
+        
+        
+    </body>
+    </html>

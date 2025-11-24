@@ -1,0 +1,27 @@
+# Basic commands
+1. running slurm script - "sbatch"
+2. check currently running nodes - "squeue --me" "squeue -u {user_id}"
+3. scancel currently running node - "scancel {job_id}"
+
+# loading HPC modules
+1. Load module - "module load {module_name}" "{module_name}=deeplearning" for deep learning modules
+
+# remote forwarding
+ssh -N -L {local_ip}:{local_port}:{remote_ip}:{remote_port} {remove_server}
+
+In here, we need 2 hop forwarding
+1 hop
+	from HPC GPU node to local HPC
+2 hop
+	from local HPC to your local machine
+
+Overall steps
+1. open GPU node
+	- this is done by slurm script
+2. 1 hop forwarding
+	- from HPC GPU node to local hPc
+	- ex: ssh -N -L localhost:23456:localhost:8888 g22
+2. 2 hopt forwarding
+	- from your local computer to local hpc
+	- ex: ssh -N -L localhost:23456:localhost:23456 xxx@carbonate.uits.iu.edu
+	- essentially, the forwarding is 3333 (loccal computer) -> 23456 (local hpc) -> 8888 (gpu node)
